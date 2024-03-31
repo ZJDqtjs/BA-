@@ -1,2 +1,6 @@
 # BA-
-蔚蓝档案（Blue archive）半自动过主线python脚本
+蔚蓝档案（Blue archive）国际服半自动过主线python脚本
+注意事项：
+模拟器显示配置应为1280*720，DPI240
+
+当然可以自己修改
