@@ -1,143 +1,113 @@
 import time
 
-import cv2
-import numpy as np
+import pyautogui
+from numpy import where
+pyautogui.PAUSE = 0.1
+pyautogui.FAILSAFE = True
+i = 1
 
-from common import color, stage, image
-from modules.baas import home
+while i<300:
+    print("\033[1;34m"f"进入第{i}次操作")
+    t1 = pyautogui.locateOnScreen('1/t1.png', confidence=0.8)
+    if t1 is not None:
+        x, y = pyautogui.center(t1)
+        xx,yy = x+190,y+10
+        pyautogui.leftClick(xx, yy)
+        print("\033[1;32m""点击")
+        time.sleep(1)
 
-story_position = {
-    1: (350, 345), 2: (950, 345)
-}
-
-
-def start(self):
-    if self.game_server != 'cn':
-        return self.logger.critical('外服此功能待开发...')
-    # 回到首页
-    home.go_home(self)
-    # 点击业务区
-    self.double_click(1195, 576)
-    # 等待业务区页面加载
-    image.compare_image(self, 'home_bus', mis_fu=self.click, mis_argv=(1195, 576))
-
-    # 点击故事
-    self.click(1093, 273)
-    image.compare_image(self, 'main_story_story')
-
-    # 点击主线故事
-    self.click(248, 355)
-    image.compare_image(self, 'main_story_menu')
-
-    # 选择故事
-    select_story(self)
-
-    # 开始剧情
-    start_admission(self)
-
-    # 回到首页
-    home.go_home(self)
-
-
-def skip_polt(self):
-    """
-    跳过剧情
-    @param self:
-    @return:
-    """
-    while True:
-        # 等待菜单出现
-        image.compare_image(self, 'cm_skip-menu')
-        # 点击菜单
-        self.click(1204, 40, False)
-        # 点击>>
-        self.click(1210, 120, False, 1, 1)
-        # 等待跳过加载
-        if image.compare_image(self, 'cm_confirm', 3):
-            # 点击跳过
-            self.click(770, 521, False)
-            return
-
-
-def start_admission(self):
-    # 检查是否通关
-    if image.compare_image(self, 'main_story_clearance', 0, 10):
-        return
-    # 检查是否通关
-    if image.compare_image(self, 'main_story_current-clearance', 0, 10):
-        return
-    # 查看第一个是否锁住了
-    if image.compare_image(self, 'main_story_first-lock', 10, 20):
-        # 锁住了点第二个任务
-        self.click(1114, 339, False)
-    else:
-        self.click(1114, 237, False)
-    # 等待剧情信息加载
-    image.compare_image(self, 'main_story_plot-info')
-
-    is_fight = image.compare_image(self, 'main_story_plot-fight', 0, 10)
-
-    # 进入剧情
-    self.click(641, 516, False)
-    # 跳过剧情
-    skip_polt(self)
-
-    if is_fight:
-        # 等待部队出击页面加载
-        image.compare_image(self, 'main_story_plot-attack')
+    t2 = pyautogui.locateOnScreen('1/t2.png', confidence=0.8)
+    t22 = pyautogui.locateOnScreen('1/t22.png', confidence=0.8)
+    if t2 is not None:
+        x, y = pyautogui.center(t2)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""点击")
         time.sleep(3)
-        # 点击出击
-        self.click(1158, 655, False)
-        auto_fight(self)
-        # 跳过剧情
-        skip_polt(self)
-
-    # 关闭获得奖励
-    stage.close_prize_info(self)
-    time.sleep(2)
-    # 再次递归
-    return start_admission(self)
+    elif t22 is not None:
+        x, y = pyautogui.center(t22)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""点击")
+        time.sleep(3)
 
 
-def change_acc_auto(self):  # 战斗时开启3倍速和auto
-    img1 = cv2.cvtColor(np.array(self.d.screenshot()), cv2.COLOR_RGB2BGR)
-    auto_r_ave = int(img1[677][1171][0]) // 2 + int(img1[677][1246][0]) // 2
-    if 190 <= auto_r_ave <= 230:
-        self.logger.info("CHANGE MANUAL to auto")
-        self.click(1215, 678)
-    elif 0 <= auto_r_ave <= 60:
-        self.logger.info("AUTO")
+
+
+    r1 = pyautogui.locateOnScreen('1/1.png', confidence=0.5)
+    if r1 is not None:
+        x,y = pyautogui.center(r1)
+        pyautogui.leftClick(x,y)
+        print("\033[1;32m""点击菜单")
+        time.sleep(1)
     else:
-        self.logger.warning("can't identify auto button")
-    acc_r_ave = int(img1[625][1196][0]) // 3 + int(img1[625][1215][0]) // 3 + int(img1[625][1230][0]) // 3
-    if 250 <= acc_r_ave <= 260:
-        self.logger.info("CHANGE acceleration phase from 2 to 3")
-        self.click(1215, 625)
-    elif 0 <= acc_r_ave <= 60:
-        self.logger.info("ACCELERATION phase 3")
-    elif 140 <= acc_r_ave <= 180:
-        self.logger.info("CHANGE acceleration phase from 1 to 3")
-        self.click(1215, 625, count=2)
+        print("\033[1;31m"'未发现1，菜单')
+
+    r2 = pyautogui.locateOnScreen('1/2.png', confidence=0.8)
+    if r2 is not None:
+        x, y = pyautogui.center(r2)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""点击跳过")
+        time.sleep(1)
     else:
-        self.logger.warning("CAN'T DETECT acceleration BUTTON")
+        print("\033[1;31m"'未发现2，跳过')
 
+    r3 = pyautogui.locateOnScreen('1/3.png', confidence=0.8)
+    if r3 is not None:
+        x, y = pyautogui.center(r3)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""点击OK")
+        time.sleep(6)
+    else:
+        print("\033[1;31m"'未发现3，OK')
 
-def auto_fight(self):
-    time.sleep(3)
-    stage.wait_loading(self)
-    time.sleep(8)
-    change_acc_auto(self)
-    self.logger.warning("检查自动释放技能完成")
+    r4 = pyautogui.locateOnScreen('1/4.png', confidence=0.8)
+    r44 = pyautogui.locateOnScreen('1/44.png', confidence=0.8)
+    if r4 is not None:
+        x, y = pyautogui.center(r4)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""轻触继续")
+        time.sleep(1)
+    elif r44 is not None:
+        x, y = pyautogui.center(r44)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""进入战斗，等待20秒")
+        time.sleep(20)
+        k = 0
+        while k<1:
+            r444 = pyautogui.locateOnScreen('1/444.png', confidence=0.8)
+            r4444 = pyautogui.locateOnScreen('1/4444.png', confidence=0.8)
+            #c = 0
+            if r444 is not None:
+                x, y = pyautogui.center(r444)
+                pyautogui.leftClick(x, y)
+                print("\033[1;32m""战斗结束")
+                #c += 1
+                k += 1
+                time.sleep(3)
+            elif r4444 is not None:
+                x, y = pyautogui.center(r4444)
+                pyautogui.leftClick(x, y)
+                print("\033[1;32m""战斗失败")
+                time.sleep(3)
+                pyautogui.leftClick(x, y)
+                #c += 1
+                k += 1
+                time.sleep(3)
+            else:
+                print("未检测到画面")
+            #k = c
+    else:
+        print("\033[1;31m"'未发现4&44，结算和战斗')
 
-
-def select_story(self):
-    """
-    选择故事
-    @param self:
-    @return:
-    """
-    story = self.tc['config']['story']
-    quotient = (story - 1) // 2
-    self.click(1246, 335, False, quotient, 0.5)
-    zb = 1 if story % 2 == 1 else 2
-    image.compare_image(self, 'main_story_choose-plot', mis_fu=self.click, mis_argv=(*story_position[zb], False))
+    t3 = pyautogui.locateOnScreen('1/t3.png', confidence=0.8)
+    if t3 is not None:
+        x, y = pyautogui.center(t3)
+        pyautogui.leftClick(x, y)
+        print("\033[1;32m""进入下一节")
+        pyautogui.leftClick(x, y)
+        pyautogui.leftClick(x, y)
+        time.sleep(3)
+        pyautogui.leftClick(x+100, y)
+        time.sleep(5)
+    else:
+        print("\033[1;31m"'未发现5')
+    i += 1
