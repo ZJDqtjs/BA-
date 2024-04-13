@@ -1,5 +1,5 @@
 # BA-
-蔚蓝档案（Blue archive）国际服半自动过主线python脚本
+蔚蓝档案（Blue archive）日服自动过活动Story的python脚本（同样适用于主线剧情）
 注意事项：
 模拟器显示配置应为1280*720，DPI240
 
