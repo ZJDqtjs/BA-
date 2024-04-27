@@ -8,31 +8,7 @@ i = 1
 
 while i<300:
     print("\033[1;34m"f"进入第{i}次操作")
-    t1 = pyautogui.locateOnScreen('1/t1.png', confidence=0.8)
-    if t1 is not None:
-        x, y = pyautogui.center(t1)
-        xx,yy = x+190,y+10
-        pyautogui.leftClick(xx, yy)
-        print("\033[1;32m""点击")
-        time.sleep(1)
-
-    t2 = pyautogui.locateOnScreen('1/t2.png', confidence=0.8)
-    t22 = pyautogui.locateOnScreen('1/t22.png', confidence=0.8)
-    if t2 is not None:
-        x, y = pyautogui.center(t2)
-        pyautogui.leftClick(x, y)
-        print("\033[1;32m""点击")
-        time.sleep(3)
-    elif t22 is not None:
-        x, y = pyautogui.center(t22)
-        pyautogui.leftClick(x, y)
-        print("\033[1;32m""点击")
-        time.sleep(3)
-
-
-
-
-    r1 = pyautogui.locateOnScreen('1/1.png', confidence=0.5)
+    r1 = pyautogui.locateOnScreen('D:/35281/Pictures/1/1.png', confidence=0.5)
     if r1 is not None:
         x,y = pyautogui.center(r1)
         pyautogui.leftClick(x,y)
@@ -41,7 +17,7 @@ while i<300:
     else:
         print("\033[1;31m"'未发现1，菜单')
 
-    r2 = pyautogui.locateOnScreen('1/2.png', confidence=0.8)
+    r2 = pyautogui.locateOnScreen('D:/35281/Pictures/1/2.png', confidence=0.8)
     if r2 is not None:
         x, y = pyautogui.center(r2)
         pyautogui.leftClick(x, y)
@@ -50,17 +26,17 @@ while i<300:
     else:
         print("\033[1;31m"'未发现2，跳过')
 
-    r3 = pyautogui.locateOnScreen('1/3.png', confidence=0.8)
+    r3 = pyautogui.locateOnScreen('D:/35281/Pictures/1/3.png', confidence=0.8)
     if r3 is not None:
         x, y = pyautogui.center(r3)
         pyautogui.leftClick(x, y)
         print("\033[1;32m""点击OK")
-        time.sleep(6)
+        time.sleep(4)
     else:
         print("\033[1;31m"'未发现3，OK')
 
-    r4 = pyautogui.locateOnScreen('1/4.png', confidence=0.8)
-    r44 = pyautogui.locateOnScreen('1/44.png', confidence=0.8)
+    r4 = pyautogui.locateOnScreen('D:/35281/Pictures/1/4.png', confidence=0.8)
+    r44 = pyautogui.locateOnScreen('D:/35281/Pictures/1/44.png', confidence=0.8)
     if r4 is not None:
         x, y = pyautogui.center(r4)
         pyautogui.leftClick(x, y)
@@ -69,12 +45,12 @@ while i<300:
     elif r44 is not None:
         x, y = pyautogui.center(r44)
         pyautogui.leftClick(x, y)
-        print("\033[1;32m""进入战斗，等待20秒")
-        time.sleep(20)
+        print("\033[1;32m""进入战斗，等待70秒")
+        time.sleep(70)
         k = 0
         while k<1:
-            r444 = pyautogui.locateOnScreen('1/444.png', confidence=0.8)
-            r4444 = pyautogui.locateOnScreen('1/4444.png', confidence=0.8)
+            r444 = pyautogui.locateOnScreen('D:/35281/Pictures/1/444.png', confidence=0.8)
+            r4444 = pyautogui.locateOnScreen('D:/35281/Pictures/1/4444.png', confidence=0.8)
             #c = 0
             if r444 is not None:
                 x, y = pyautogui.center(r444)
@@ -98,15 +74,11 @@ while i<300:
     else:
         print("\033[1;31m"'未发现4&44，结算和战斗')
 
-    t3 = pyautogui.locateOnScreen('1/t3.png', confidence=0.8)
-    if t3 is not None:
-        x, y = pyautogui.center(t3)
+    r5 = pyautogui.locateOnScreen('D:/35281/Pictures/1/5.png', confidence=0.8)
+    if r5 is not None:
+        x, y = pyautogui.center(r5)
         pyautogui.leftClick(x, y)
         print("\033[1;32m""进入下一节")
-        pyautogui.leftClick(x, y)
-        pyautogui.leftClick(x, y)
-        time.sleep(3)
-        pyautogui.leftClick(x+100, y)
         time.sleep(5)
     else:
         print("\033[1;31m"'未发现5')
